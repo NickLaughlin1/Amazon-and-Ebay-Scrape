@@ -50,7 +50,8 @@ pip install scrapy-rotating-proxies
 ```
 pip install selenium
 ```
-   Install chromedriver from https://chromedriver.chromium.org/downloads and set the chromedriver variable in GetUrl.py to the exact        path that it is saved to on your computer.
+   Install chromedriver from https://chromedriver.chromium.org/downloads and set the chromedriver variable in GetUrl.py to the exact path that it is saved to on your computer.
+   
 5. Install bs4 with the command:
 ```
 pip install bs4
@@ -64,6 +65,7 @@ pip install pandas
 scrapy startproject project_name
 ```
    Then cd into the "project_name" directory
+   
 8. Create a spider with the command:
 ```
 scrapy genspider example
