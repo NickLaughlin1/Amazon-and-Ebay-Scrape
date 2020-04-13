@@ -8,7 +8,7 @@ def Find_URL():
     # Get what the user wants to search
     result = input("What would you like to search for on Amazon?" + "\n")
 
-    chromedriver = "C:\\Users\\laugh\\Documents\\PythonDriver\\chromedriver.exe"
+    chromedriver = "Directory your chromedriver is saved to"
     options = webdriver.ChromeOptions()
     options.add_argument("headless")
     driver = webdriver.Chrome(chromedriver, options=options)
