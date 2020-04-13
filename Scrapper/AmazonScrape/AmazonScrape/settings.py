@@ -74,8 +74,6 @@ DOWNLOADER_MIDDLEWARES = {
     # ...
     'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
     'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
-    # 'scrapy_proxy_pool.middlewares.ProxyPoolMiddleware': 610,
-    # 'scrapy_proxy_pool.middlewares.BanDetectionMiddleware': 620,
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
     'scrapy_user_agents.middlewares.RandomUserAgentMiddleware': 400,
     # ...

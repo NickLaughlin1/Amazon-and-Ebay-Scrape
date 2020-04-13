@@ -15,6 +15,14 @@ class AmazonSpiderSpider(scrapy.Spider):
 
     def __init__(self):
         open(self.output, 'w').close()
+        dict = {
+            'Poduct Name' : [],
+            'Product Price' : [],
+            'Product Rating' : [],
+            'Product Image' : []
+        }
+        df = pd.DataFrame(dict)
+        df.to_csv(self.output, index=False)
 
 
     def parse(self, response):
@@ -22,6 +30,8 @@ class AmazonSpiderSpider(scrapy.Spider):
         product_image = []
         product_price = []
         product_rating = []
+
+        # Loops through all the listings on the page
         for product in response.css('.s-result-item'):
             items = AmazonscrapeItem()
             product_name.append(product.css('.a-color-base.a-text-normal::text').get())
@@ -34,6 +44,7 @@ class AmazonSpiderSpider(scrapy.Spider):
                 'product_rating' : product_rating,
                 'product_image' : product_image
             }
+        # Dictionary that has all the information from each listing that will be used in the csv file
         dict = {
             'Product Name' : product_name, 
             'Product Price' : product_price,
@@ -41,9 +52,9 @@ class AmazonSpiderSpider(scrapy.Spider):
             'Product Image Links' : product_image
             }
         df = pd.DataFrame(dict)
-        df.to_csv(self.output, mode='a', header=False)
+        df.to_csv(self.output, mode='a', header=False, index=False)  # write to the csv file without overwriting the data each time
 
-        # Iterates through each Amazon Page
+        # Gets the available page numbers
         amazon_num = response.css('.a-normal a::text').extract()
         next_page = ""
         # Gets the next pages url
@@ -57,5 +68,6 @@ class AmazonSpiderSpider(scrapy.Spider):
                     if next_page is None:
                         AmazonSpiderSpider.last_page = True
         AmazonSpiderSpider.page_number += 1
+        # call the parse function
         yield response.follow(next_page, callback = self.parse)
     
