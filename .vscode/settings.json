@@ -1,0 +1,20 @@
+{
+    "python.pythonPath": "C:\\Users\\laugh\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    // "python.pythonPath": "C:\\Users\\laugh\\Desktop\\Real Amazon Scrapper\\Scrapper\\Scripts\\python.exe",
+    "python.autoComplete.addBrackets": true,
+    "python.autoComplete.extraPaths": [
+        "C:/Users/laugh/Desktop/Real Amazon Scrapper/Scrapper/Lib/site-packages/scrapy",
+        "C:/Users/laugh/Desktop/Real Amazon Scrapper/Scrapper/Lib/site-packages/selenium",
+        "C:/Users/laugh/Desktop/Real Amazon Scrapper/Scrapper/Lib/site-packages/scrapy-user-agents",
+        "C:/Users/laugh/Desktop/Real Amazon Scrapper/Scrapper/Lib/site-packages/scrapy_proxy_pool",
+        "C:/Users/laugh/Desktop/Real Amazon Scrapper/Scrapper/Lib/site-packages/requests",
+        "C:/Users/laugh/Desktop/Real Amazon Scrapper/Scrapper/Lib/site-packages/bs4"
+    ],
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": false,
+    "python.analysis.disabled": [
+        "unresolved-import"
+    ],
+    "git.ignoreLimitWarning": true,
+    
+}
