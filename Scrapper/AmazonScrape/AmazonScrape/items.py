@@ -15,4 +15,5 @@ class AmazonscrapeItem(scrapy.Item):
     product_price = scrapy.Field()
     product_rating = scrapy.Field()
     product_image = scrapy.Field()
+    product_link = scrapy.Field()
     pass
