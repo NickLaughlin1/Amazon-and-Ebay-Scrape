@@ -19,6 +19,7 @@ class AmazonSpiderSpider(scrapy.Spider):
             'Poduct Name' : [],
             'Product Price' : [],
             'Product Rating' : [],
+            'Product Link' : [],
             'Product Image' : []
         }
         df = pd.DataFrame(dict)
@@ -30,6 +31,7 @@ class AmazonSpiderSpider(scrapy.Spider):
         product_image = []
         product_price = []
         product_rating = []
+        product_link = []
 
         # Loops through all the listings on the page
         for product in response.css('.s-result-item'):
@@ -37,11 +39,13 @@ class AmazonSpiderSpider(scrapy.Spider):
             product_name.append(product.css('.a-color-base.a-text-normal::text').get())
             product_price.append(product.css('.a-offscreen::text').get())
             product_image.append(product.css('.s-image::attr(src)').get())
+            product_link.append("https://www.amazon.com" + product.css('.a-text-normal::attr(href)').get())
             product_rating.append(product.css('.aok-align-bottom').css('::text').extract())
             yield {
                 'product_name' : product_name,
                 'product_price' : product_price,
                 'product_rating' : product_rating,
+                'product_link' : product_link,
                 'product_image' : product_image
             }
         # Dictionary that has all the information from each listing that will be used in the csv file
@@ -49,6 +53,7 @@ class AmazonSpiderSpider(scrapy.Spider):
             'Product Name' : product_name, 
             'Product Price' : product_price,
             'Product Rating' : product_rating,
+            'Product Link' : product_link,
             'Product Image Links' : product_image
             }
         df = pd.DataFrame(dict)
