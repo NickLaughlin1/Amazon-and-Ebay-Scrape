@@ -10,7 +10,7 @@ class AmazonSpiderSpider(scrapy.Spider):
     page_number = 2
     #The user gets to name the file
     output = input("What do you want the CSV file to be called (do not include .csv after name)?" + "\n") + ".csv"
-    url = Find_URL()
+    url = Find_URL("amazon")
     start_urls = [url]
 
     def __init__(self):
