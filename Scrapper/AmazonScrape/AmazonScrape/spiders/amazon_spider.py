@@ -8,7 +8,7 @@ from ..GetUrl import Find_URL
 class AmazonSpiderSpider(scrapy.Spider):
     name = 'amazon'
     page_number = 2
-    # The user gets to name the file
+    #The user gets to name the file
     output = input("What do you want the CSV file to be called (do not include .csv after name)?" + "\n") + ".csv"
     url = Find_URL()
     start_urls = [url]
