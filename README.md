@@ -1,5 +1,5 @@
-# Amazon-Scrape
-A web scrapper that scrapes search results on Amazon. Gets the name, price, rating, product link, and image link of each listing and exports it to a csv file. Uses rotating proxies and user agents so there is less chance of being detected by Amazon. You can disable the rotating proxies by commenting out these two lines of code in settings.py
+# Amazon-Scrape and Ebay-Scrape
+A web scrapper that scrapes search results on Amazon or Ebay. Gets the name, price, rating, product link, and image link of each listing and exports it to a csv file. Uses rotating proxies and user agents so there is less chance of being detected by Amazon. You can disable the rotating proxies by commenting out these two lines of code in settings.py
 
 ```
 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
@@ -8,7 +8,7 @@ A web scrapper that scrapes search results on Amazon. Gets the name, price, rati
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. When creating your own virtual environment make sure to delete the Lib and Scripts folders from this repository.
 
 ### Prerequisites
 
