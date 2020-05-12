@@ -1,10 +1,15 @@
 # Amazon-Scrape and Ebay-Scrape
 (Ebay portion in progress)
-A web scrapper that scrapes search results on Amazon or Ebay. Gets the name, price, rating, product link, and image link of each listing and exports it to a csv file. Uses rotating proxies and user agents so there is less chance of being detected by Amazon. You can disable the rotating proxies by commenting out these two lines of code in settings.py
+A web scrapper that scrapes search results on Amazon or Ebay. Gets the name, price, rating, product link, and image link of each listing and exports it to a csv file. Uses rotating proxies and user agents so there is less chance of being detected by Amazon. You can disable the rotating proxies by commenting out these two lines of code in settings.py.
 
 ```
 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
 'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+```
+
+If you do not want a window to pop up when scraping then in GetUrl.py uncomment this line of code:
+```
+options.add_argument("headless")
 ```
 
 ## Getting Started
