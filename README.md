@@ -66,6 +66,7 @@ pip install bs4
 ```
 pip install pandas
 ```
+(Do steps 7 - 8 if you want to create your own scrapy project otherwise just follow step 9 after cloning the repo)
 7. Now start a scrapy project with the command:
 ```
 scrapy startproject project_name
@@ -76,9 +77,9 @@ scrapy startproject project_name
 ```
 scrapy genspider example
 ```
-9. Now run the project with the command:
+9. Now cd into the spider folder and run the command
 ```
-scrapy crawl example
+scrapy runspider example_spider.py
 ```
    Then just type into the console/terminal what you want the csv file to be called and then what you want to search on Amazon.
    
