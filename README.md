@@ -80,7 +80,7 @@ scrapy genspider example
 ```
 9. Now cd into the spider folder and run the command
 ```
-scrapy runspider example_spider.py
+scrapy crawl example
 ```
    Then just type into the console/terminal what you want the csv file to be called and then what you want to search on Amazon.
    
