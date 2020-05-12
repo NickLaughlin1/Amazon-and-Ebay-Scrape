@@ -67,6 +67,7 @@ pip install bs4
 pip install pandas
 ```
 (Do steps 7 - 8 if you want to create your own scrapy project otherwise just follow step 9 after cloning the repo)
+
 7. Now start a scrapy project with the command:
 ```
 scrapy startproject project_name
