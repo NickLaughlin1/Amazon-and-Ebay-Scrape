@@ -17,3 +17,10 @@ class AmazonscrapeItem(scrapy.Item):
     product_image = scrapy.Field()
     product_link = scrapy.Field()
     pass
+
+class EbayscrapeItem(scrapy.Item):
+    product_name = scrapy.Field()
+    product_price = scrapy.Field()
+    product_link = scrapy.Field()
+    product_image = scrapy.Field()
+    pass
