@@ -22,7 +22,7 @@ NEWSPIDER_MODULE = 'AmazonScrape.spiders'
 USER_AGENT = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 
 # PROXY_POOL_ENABLED = True
