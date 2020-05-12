@@ -9,7 +9,7 @@ def Find_URL(name):
     # Get what the user wants to search
     chromedriver = "C:\\Users\\laugh\\Documents\\PythonDriver\\chromedriver.exe"
     options = webdriver.ChromeOptions()
-    #options.add_argument("headless")
+    options.add_argument("headless")
     driver = webdriver.Chrome(chromedriver, options=options)
     if(name == "amazon"):
         result = input("What would you like to search for on Amazon?" + "\n")
