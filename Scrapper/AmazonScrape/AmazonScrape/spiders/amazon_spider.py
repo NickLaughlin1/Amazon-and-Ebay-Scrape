@@ -1,32 +1,33 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import pandas as pd
-from selenium import webdriver
 from ..items import AmazonscrapeItem
 from ..GetUrl import Find_URL
 
 class AmazonSpiderSpider(scrapy.Spider):
+    
     name = 'amazon'
     page_number = 2
-    #The user gets to name the file
-    output = input("What do you want the CSV file to be called (do not include .csv after name)?" + "\n") + ".csv"
-    url = Find_URL("amazon")
-    start_urls = [url]
-
+    start_urls = ["https://www.amazon.com/"]
     def __init__(self):
-        open(self.output, 'w').close()
-        dict = {
+        self.output = " "
+        self.dict = {
             'Poduct Name' : [],
             'Product Price' : [],
             'Product Rating' : [],
             'Product Link' : [],
             'Product Image' : []
         }
-        df = pd.DataFrame(dict)
-        df.to_csv(self.output, index=False)
-
 
     def parse(self, response):
+        self.output = input("What do you want the CSV file to be called (do not include .csv after name)?" + "\n") + ".csv"
+        url = Find_URL("amazon")
+        open(self.output, 'w').close()
+        df = pd.DataFrame(self.dict)
+        df.to_csv(self.output, index=False)
+        yield scrapy.Request(url, callback=self.parse_link)
+
+    def parse_link(self, response):
         product_name = []
         product_image = []
         product_price = []
@@ -39,7 +40,10 @@ class AmazonSpiderSpider(scrapy.Spider):
             product_name.append(product.css('.a-color-base.a-text-normal::text').get())
             product_price.append(product.css('.a-offscreen::text').get())
             product_image.append(product.css('.s-image::attr(src)').get())
-            product_link.append("https://www.amazon.com" + product.css('.a-text-normal::attr(href)').get())
+            if product.css('.a-text-normal::attr(href)').get() is not None:
+                product_link.append("https://www.amazon.com" + product.css('.a-text-normal::attr(href)').get())
+            else:
+                product_link.append("No link")
             product_rating.append(product.css('.aok-align-bottom').css('::text').extract())
             yield {
                 'product_name' : product_name,
@@ -74,5 +78,6 @@ class AmazonSpiderSpider(scrapy.Spider):
                         AmazonSpiderSpider.last_page = True
         AmazonSpiderSpider.page_number += 1
         # call the parse function
-        yield response.follow(next_page, callback = self.parse)
+        yield response.follow(next_page, callback = self.parse_link)
+
     
