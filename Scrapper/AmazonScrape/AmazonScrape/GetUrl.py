@@ -4,11 +4,12 @@ from selenium.webdriver.remote.webdriver import WebDriver
 import time
 
 
+
 def Find_URL(name):
     # Get what the user wants to search
-    chromedriver = "Wherever your chromedrive is located"
+    chromedriver = "C:\\Users\\laugh\\Documents\\PythonDriver\\chromedriver.exe"
     options = webdriver.ChromeOptions()
-    options.add_argument("headless")
+    # options.add_argument("headless")
     driver = webdriver.Chrome(chromedriver, options=options)
     if(name == "amazon"):
         result = input("What would you like to search for on Amazon?" + "\n")
@@ -16,14 +17,16 @@ def Find_URL(name):
         search = driver.find_element_by_id("twotabsearchtextbox")
         # Get the result and search for
         search.send_keys(result, Keys.ENTER)
-        #time.sleep(30)
-        search = driver.find_element_by_xpath('/html/body/div[1]/div[2]/div[1]/div[1]/div/span[8]/div/div/span/div/div/ul/li[2]/a').get_attribute('href')
+        search = driver.current_url
+        print(search)
         driver.close()
     else:
         result = input("What would you like to search for on Ebay?" + "\n")
         driver.get('https://www.ebay.com')
-
+        search = driver.find_element_by_id("gh-ac")
         search.send_keys(result, Keys.ENTER)
-        search = driver.find_element_by_xpath('/html/body/div[1]/div[2]/div[1]/div[1]/div/span[8]/div/div/span/div/div/ul/li[2]/a').get_attribute('href')
+        search = driver.current_url
+        print(search)
+        driver.close()
     return search
     
