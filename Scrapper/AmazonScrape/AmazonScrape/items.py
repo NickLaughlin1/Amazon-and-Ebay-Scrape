@@ -23,4 +23,7 @@ class EbayscrapeItem(scrapy.Item):
     product_price = scrapy.Field()
     product_link = scrapy.Field()
     product_image = scrapy.Field()
+    product_usage = scrapy.Field()
+    product_authorized = scrapy.Field()
+    product_rating = scrapy.Field()
     pass
