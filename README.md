@@ -55,7 +55,10 @@ pip install scrapy-rotating-proxies
 ```
 pip install selenium
 ```
-   Install chromedriver from https://chromedriver.chromium.org/downloads and set the chromedriver variable in GetUrl.py to the exact path that it is saved to on your computer.
+   Install chromedriver from https://chromedriver.chromium.org/downloads and set the chromedriver variable in GetUrl.py to the exact path that it is saved to on your computer. Then to utilize the chromedriver update the chromedriver variable in GetUrl.py with the path to where you saved the chromedriver on your computer>
+```
+chromedriver = "path where saved on computer"
+```
    
 5. Install bs4 with the command:
 ```
