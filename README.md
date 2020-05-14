@@ -1,6 +1,5 @@
 # Amazon-Scrape and Ebay-Scrape
-(Ebay portion in progress)
-A web scrapper that scrapes search results on Amazon or Ebay. Gets the name, price, rating, product link, and image link of each listing and exports it to a csv file. Uses rotating proxies and user agents so there is less chance of being detected by Amazon. You can disable the rotating proxies by commenting out these two lines of code in settings.py.
+A web scrapper that scrapes search results on Amazon or Ebay. Gets the name, price, rating, product link, and image link of each listing and exports it to a csv file. Uses rotating proxies and user agents so there is less chance of being detected by Amazon or eBay. You can disable the rotating proxies by commenting out these two lines of code in settings.py.
 
 ```
 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
@@ -14,7 +13,7 @@ options.add_argument("headless")
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. When creating your own virtual environment make sure to delete the Lib and Scripts folders from this repository.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. When creating your own virtual environment make sure to delete the Lib and Scripts folders from this repository. You can delete the .vscode folder and to create your own virtual environment delete the Lib and Scripts folder.
 
 ### Prerequisites
 
@@ -82,7 +81,7 @@ scrapy genspider example
 ```
 scrapy crawl example
 ```
-   Then just type into the console/terminal what you want the csv file to be called and then what you want to search on Amazon.
+   Then just type into the console/terminal what you want the csv file to be called and then what you want to search on Amazon or Ebay.
    
 
 ## Built With
