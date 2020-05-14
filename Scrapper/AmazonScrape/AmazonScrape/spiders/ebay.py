@@ -8,7 +8,7 @@ from ..GetUrl import Find_URL
 
 class EbaySpider(scrapy.Spider):
     name = 'ebay'
-    page_num = 2
+    page_num = 1
     url = " "
     start_urls = ["https://www.ebay.com/"]
     def __init__(self):
@@ -40,21 +40,19 @@ class EbaySpider(scrapy.Spider):
         product_authorized = []
         product_rating = []
 
-        print("Crawling page " + str(EbaySpider.page_num - 1))
-        print("URL: " + EbaySpider.url + "\n" + "--------------------------------------------------------------------------------")
+        print("Crawling page " + str(EbaySpider.page_num))
+        print("URL: " + EbaySpider.url + "\n" + '-'*40 + "\n\n")
 
         results = response.xpath('//div/div/ul/li[contains(@class, "s-item" )]')
         #loops through all the listings on the page
         for product in results:
             items = EbayscrapeItem()
             name = product.css('.s-item__title::text').get()
-            # Sponsored titles return None twice for some reason so I have to check twice
+            # Sponsored titles have a different class and some titles are bolded so both have to be checked
             if name == None:
-                print("THIS IS SPONSORED AHAHAHAHAHAHHAHAH")
                 name = product.css('.s-item__title--has-tags::text').extract_first()
                 if name == None:
                     name = product.css('.s-item__title .BOLD::text').extract_first()
-                    print(name)
 
             if name == 'New Listing':
                 name = product.css('.s-item__title::text').extract()[1]
@@ -66,6 +64,7 @@ class EbaySpider(scrapy.Spider):
             product_usage.append(product.css('.SECONDARY_INFO::text').get())
             product_rating.append(product.css('.b-starrating .clipped::text').get())
             authorized = product.css('.s-item__authorized-seller .BOLD::text').get()
+            # Checks to see if the seller is a authorized seller
             if authorized is not None:
                 product_authorized.append(authorized)
             else:
@@ -89,7 +88,15 @@ class EbaySpider(scrapy.Spider):
             'Product Link' : product_link,
             'Product Image' : product_img
         }
-
+        # Writes all the information scraped into a csv file using pandas
         df = pd.DataFrame(dict)
         df.to_csv(self.output, mode='a', header=False, index=False)
+        next_page = response.css('.pagination__next::attr(href)').extract_first()
+        if next_page == None or str(next_page).endswith("#"):
+            print("eBay items scraped successfully!" + "\n\n")
+        else:
+            EbaySpider.page_num += 1
+            # call the parse function
+            yield response.follow(next_page, callback = self.parse_link)
+
             
